@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="row">
+        <!-- <div class="col-sm-12">
+            <h3>Multiple Selection with Checkbox</h3>
+            <p-tree [value]="files" selectionMode="checkbox" [(selection)]="selectedFiles2"></p-tree>
+            <div>Selected Nodes: <span *ngFor="let file of selectedFiles2">{{file.label}} </span>
+                <br>
+                count: {{selectedFiles.length}}
+            </div>
+        </div> -->
+        <div class="col-sm-12">
+            <br>
+            {{selectedText}}
+            <!-- {{selectedFiles | json}} -->
+            <br>
+            Total: {{filesCount}} | 
+            Not completed: {{filesCount - selectedFilesList.length}} | 
+            Completed: {{selectedFilesList.length}} | 
+            <p-tree [value]="files" selectionMode="checkbox" [(selection)]="selectedFiles"
+                (onNodeSelect)="nodeSelected($event.node.data)"
+                (onNodeUnselect)="nodeSelected($event)">
+                <ng-template let-node pTemplate="default">
+                    <a href="javascript:void(0);" (click)="doSomething($event, node.data)">
+
+                        {{node.label}} <i class="fa fa-eye"></i>
+                    </a>
+                </ng-template>
+            </p-tree>
+
+
+
+            <!-- <p-tree [value]="files" [(selection)]="selectedFiles" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" selectionMode="checkbox">                    
+            </p-tree> -->
+
+        </div>
+    </div>
+
+</div>
